@@ -35,6 +35,16 @@ CREATE TABLE "member"
     rolename VARCHAR2(50) DEFAULT 'ROLE_USER' NOT NULL -- ROLE_USER, ROLE_MANAGER, ROLE_ADMIN 등 각 역할에 따른 이름
 );
 
+--댓글 테이블
+CREATE TABLE reply
+(
+    replyseq NUMBER PRIMARY KEY,
+    boardseq NUMBER NOT NULL,
+    usrid    VARCHAR2(20) NOT NULL,
+    replytext VARCHAR2(1000) NOT NULL,
+    regdate  DATE default sysdate,
+        constraint reply_fk FOREIGN KEY(boardseq) REFERENCES board(boardseq) ON DELETE CASCADE
+);
 
-
+CREATE SEQUENCE reply_seq;
 
