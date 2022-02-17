@@ -26,7 +26,6 @@
         DELETE FROM reply WHERE replyseq =#{replyseq}
     </delete>
 
-
     <!--댓글 1개 조회-->
     <select id="findOne" resultType="Reply" parameterType="long">
         SELECT
@@ -37,5 +36,13 @@
             replyseq = #{replyseq}
     </select>
 
-
+    <!--댓글 수정-->
+    <update id="update" parameterType="Reply">
+        UPDATE reply
+        SET
+            replytext = #{replytext},
+            regdate = sysdate
+        WHERE
+            replyseq = #{replyseq}
+    </update>
 </mapper>

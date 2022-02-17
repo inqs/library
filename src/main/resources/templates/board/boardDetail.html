@@ -4,8 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #replyUpdate{
+            display : none;
+        }
+    </style>
     <script th:inline="javascript" th:src="@{/script/jquery-3.6.0.min.js}"></script>
     <script>
+      //전역변수는 함수 완전 바깥쪽으로 선언
+      let seq = '';
+
       function delBoard(boardseq) {
         if(confirm("삭제하시겠습니까?")) {
           let url = `/board/boardDelete?boardseq=${boardseq}`;
@@ -15,7 +23,9 @@
     </script>
     <script>
         $(function(){
+            //$("#replyUpdate").css('display', none);
             $("#replyWrite").on('click', replyWrite);
+            $("#replyUpdate").on('click', replyUpdate);
             init();
         });
 
@@ -75,7 +85,6 @@
         }
         //댓글 삭제
         function replyDelete() {
-
             //버튼을 눌렀을 떄 그 요소를 this
             let replyseq = $(this).attr('data-sno');
             let boardseq = $("#boardseq").val();
@@ -95,7 +104,47 @@
 
         //댓글 수정을 위한 조회
         function replyFind() {
-            alert("수정버튼 클릭함");
+            let replyseq = $(this).attr('data-sno');
+
+            $.ajax({
+                url : '/reply/replyFind',
+                method : 'POST',
+                data : {"replyseq" : replyseq},
+                success : function(resp) {
+                    //resp가 object이기 때문에 바꿔줌
+                    alert(JSON.stringify(resp));
+                    if(resp !== ""){
+                        $("#replytext").val(resp.replytext);
+                        $("#replytext").focus();
+                        $("#replyWrite").css("display", "none");
+                        $("#replyUpdate").css("display", "inline");
+
+                        seq = resp.replyseq; //전역변수 seq에 고치려고 하는 댓글 번호를 저장
+                    } else {
+                        alert("자신이 쓴 댓글만 수정할 수 있습니다");
+                        return;
+                    }
+                }
+            })
+        }
+        //댓글을 수정하는 함수
+        function replyUpdate(){
+            let replyseq = seq;
+            let replytext = $("#replytext").val();
+
+            let sendData = {"replyseq" : replyseq, "replytext" : replytext}
+
+            $.ajax({
+                url : '/reply/replyUpdate',
+                method : 'POST',
+                data : sendData,
+                success : function(resp){
+                    $("#replyWrite").css("display", "inline");
+                    $("#replyUpdate").css("display", "none" );
+                    $("#replytext").val("");
+                    init();
+                }
+            })
         }
     </script>
 </head>
@@ -124,7 +173,8 @@
             <tr>
                 <td>
                     <input type="text" id="replytext" name="replytext">
-                    <input type="button" id="replyWrite" value="댓글입력">
+                    <input type="button" id="replyWrite" value="댓글 입력">
+                    <input type="button" id="replyUpdate" value="댓글 수정">
                 </td>
             </tr>
         </table>
@@ -133,7 +183,6 @@
 
     <!--댓글 목록창-->
     <div id="replyDisplay"></div>
-
 
 </div>
 </body>

@@ -61,4 +61,32 @@ public class ReplyController {
         }
         return message;
     }
+
+    //댓글 수정을 위한 1개의 데이터를 조회
+    @ResponseBody
+    @PostMapping("/replyFind")
+    public Reply replyFind(Long replyseq, @AuthenticationPrincipal UserDetails user){
+        System.out.println(replyseq);
+        String loginId = user.getUsername(); //로그인 정보
+        Reply reply = replyService.findOne(replyseq);
+
+        if(loginId.equals(reply.getUsrid()))
+            return reply;
+        return null;
+    }
+
+    //댓글 수정
+    @ResponseBody
+    @PostMapping("/replyUpdate")
+    public String replyUpdate(Reply reply){
+        int result = replyService.update(reply);
+
+        String message = null;
+        if(result == 1){
+            message="수정 완료";
+        }else {
+            message="수정 오류";
+        }
+        return message;
+    }
 }

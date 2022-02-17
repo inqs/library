@@ -3,29 +3,44 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>HAPPY LIBRARY</title>
+    <style>
+
+    </style>
 </head>
 <body>
-  <div class="container">
-      <h1>첫 화면</h1>
-      <div>
-          <ul>
-              <li><a href="./guestbook/guestbookList.html" th:href="@{/guestbook/guestbookList}">방명록</a></li>
-              <li sec:authorize="!isAuthenticated()" >
-                  <a href="#" th:href="@{/account/loginForm}" >로그인</a>
-              </li>
-              <li sec:authorize="!isAuthenticated()">
-                  <a href="#" th:href="@{/account/register}">회원가입</a>
-              </li>
+<div class="container-fluid p-5 bg-primary text-white text-center">
+    <h1>HAPPY LIBRARY</h1>
+    <p>WELCOME TO HAPPY LIBRARY!</p>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-primary">로그인</button>
+    <button type="button" class="btn btn-primary">회원가입</button>
+</div>
 
-              <li sec:authorize="isAuthenticated()">
-                  <span sec:authentication="name">(사용자 정보)</span>
-                  <span sec:authentication="principal.authorities">(권한)</span>
-                  <a href="#" th:href="@{/logout}">로그아웃</a>
-              </li>
-              <li><a href="#" th:href="@{/board/boardList}">게시판</a></li>
-          </ul>
-      </div>
-  </div>
+<div class="container">
+    <div>
+        <ul>
+            <li><a href="./guestbook/guestbookList.html" th:href="@{/guestbook/guestbookList}">방명록</a></li>
+            <li sec:authorize="!isAuthenticated()" >
+                <a href="#" th:href="@{/account/loginForm}" >로그인</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="#" th:href="@{/account/register}">회원가입</a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <span sec:authentication="name">(사용자 정보)</span>
+                <span sec:authentication="principal.authorities">(권한)</span>
+                <a href="#" th:href="@{/logout}">로그아웃</a>
+            </li>
+            <li><a href="#" th:href="@{/board/boardList}">게시판</a></li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>

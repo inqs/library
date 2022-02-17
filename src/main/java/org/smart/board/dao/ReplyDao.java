@@ -23,4 +23,5 @@ public interface ReplyDao {
 
     public Reply findOne(Long replyseq);
     public int delete(Long replyseq);
+    public int update(Reply reply);
 }

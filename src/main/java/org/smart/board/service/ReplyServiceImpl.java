@@ -32,4 +32,9 @@ public class ReplyServiceImpl implements ReplyService{
     public int delete(Long replyseq) {
         return replyDao.delete(replyseq);
     }
+
+    @Override
+    public int update(Reply reply) {
+        return replyDao.update(reply);
+    }
 }
