@@ -24,4 +24,10 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
     // 어제 만들었던 코드 날렸음
+
+    @Override
+    public Member findOne(String usrid) {
+
+        return memberDao.findOne(usrid);
+    }
 }

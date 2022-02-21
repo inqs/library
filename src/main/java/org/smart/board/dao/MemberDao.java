@@ -7,4 +7,7 @@ import org.smart.board.entity.Member;
 public interface MemberDao {
     // 회원가입
     public int insertMember(Member member);
+
+    //회원조회
+    public Member findOne(String usrid);
 }
