@@ -9,5 +9,8 @@
         VALUES
             (#{usrid}, #{usrpwd}, #{usrname}, #{email})
     </insert>
-
+    <select id="findOne" parameterType="String" resultType="Member">
+        SELECT * FROM "member"
+        WHERE usrid = #{usrid}
+    </select>
  </mapper>
