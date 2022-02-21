@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/board/boardDetail",
                         "/guestbook/**",
                         "/account/register",
+                        "/account/idCheck",
                         "/images/**", "/style/**", "/script/**").permitAll()
                 .anyRequest().authenticated() // 위의 설정 외에는 모두 로그인을 해야 함
                 .and()
