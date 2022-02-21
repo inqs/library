@@ -33,9 +33,27 @@ public class BookController {
         System.out.println("=================" + bookList);
 
 
-        System.out.println(bookList.get(0).getReturnbook());
+
 
         return "book/bookList";
+    }
+
+    @GetMapping("/bookDetail")
+    public String bookDetail(Long bookseq, Model model){
+
+        Book book  = bookService.findOne(bookseq);
+
+        // 2) Model에 저장
+        model.addAttribute("book", book);
+
+        System.out.println("findone으로 하나 찾아온거 : ==================" +book);
+
+        if(book.getStock() >0){
+            book.setReturnbook(1);
+        }
+
+        return "book/bookDetail";
+
     }
 
 }

@@ -7,4 +7,6 @@ import java.util.Map;
 
 public interface BookService {
     public List<Book> findAll(String searchField, String search_text);
+
+    public Book findOne(Long bookseq);
 }

@@ -24,5 +24,10 @@ public class BookServiceImpl implements BookService{
         List<Book> bookList = bookDao.findAll(map);
         return bookList;
     }
+
+    @Override
+    public Book findOne(Long bookseq) {
+        return bookDao.findOne(bookseq);
+    }
 }
 

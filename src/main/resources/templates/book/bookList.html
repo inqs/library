@@ -83,8 +83,11 @@
     <h4><b>검색 결과</b></h4>
 
     <!--책 한권, hr까지 포함해서 반복-->
+    <hr>
+    <div>
+        <h2 th:if="${bookList.isEmpty()}">검색 결과가 없습니다.</h2>
+    </div>
     <th:block th:each="book, status : ${bookList}">
-
     <hr>
     <div class="container mt-3">
         <div class="sinfo" style="margin-bottom:40px;">
@@ -95,16 +98,19 @@
                 </div>
             </div>
             <div class="info">
-                <input type="hidden"  id="returnBook" name="returnBook" th:value="${book.returnBook}">
+                <input type="hidden"  id="returnbook" name="returnbook" th:value="${book.returnbook}">
                 <ul>
                     <li style="line-height: 150%;">
                         <strong>도서.</strong>
                         <a href="#" vLoca="111003" vCtrl="5527821501" isbn="9791188331796" class="name goDetail"
-                           th:href="@{/book/bookDetail(boardseq=${book.isbn})}" th:text="${book.booktitle}">&nbsp;&nbsp;돈의
+                           th:href="@{/book/bookDetail(bookseq=${book.bookseq})}" th:text="${book.booktitle}">&nbsp;&nbsp;돈의
                             속성 :
                             최상위 부자가 말하는 돈에 대한 모든 것</a>
                     </li>
-                    <li th:text="${book.writer}">&nbsp;&nbsp;저자 : 지은이: 김승호</li>
+                    <li>
+                        <strong>저자.</strong>
+                        <span th:text="${book.writer}">저자 : 지은이: 김승호</span>
+                    </li>
                     <li th:text="${book.publisher}">&nbsp;&nbsp;출판사 : Snowfox(스노우폭스북스), 2020</li>
                     <li th:text="${book.descrip}">&nbsp;&nbsp;ISBN : 9791188331796</li>
                     <li th:text="${book.isbn}">&nbsp;&nbsp;ISBN : 9791188331796</li>
