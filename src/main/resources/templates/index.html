@@ -31,7 +31,12 @@
             <li sec:authorize="!isAuthenticated()">
                 <a href="#" th:href="@{/account/register}">회원가입</a>
             </li>
-
+            <li sec:authorize="!isAuthenticated()">
+                <a href="#" th:href="@{/reservation/reservationPage}">대여하기 테스트</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="#" th:href="@{/book/bookList}">책 리스트 테스트</a>
+            </li>
             <li sec:authorize="isAuthenticated()">
                 <span sec:authentication="name">(사용자 정보)</span>
                 <span sec:authentication="principal.authorities">(권한)</span>
