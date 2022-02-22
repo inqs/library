@@ -1,6 +1,5 @@
 package org.smart.board.controller;
 
-import org.smart.board.entity.Board;
 import org.smart.board.entity.Book;
 import org.smart.board.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,28 @@ public class BookController {
 
     }
 
-    @GetMapping("/bookDetail")
-    public String bookDetail() {
+//    @GetMapping("/bookDetail")
+//    public String bookDetail() {
+//
+//        return "book/bookDetail";
+//    }
 
+    /**
+     * 글 자세히 보기 화면 요청
+     * @param bookseq
+     * @param model
+     * @return
+     */
+    @GetMapping("/bookDetail")
+    public String bookDetail(Long bookseq, Model model) {
+        // 1) DB에서 boardseq에 해당하는 하나의 글을 질의해옴
+        // 1-1) 조회수 증가해야함
+        Book book  = bookService.findOne(bookseq);
+
+        // 2) Model에 저장
+        model.addAttribute("book", book);
+
+        // 3) view로 forward
         return "book/bookDetail";
     }
 
