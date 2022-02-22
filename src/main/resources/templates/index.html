@@ -8,47 +8,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>HAPPY LIBRARY</title>
     <style>
-
     div.btn-group{
          float: right;
     }
-
     body {
         height: 100vh;
         background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1890&q=80');
         background-repeat : no-repeat;
         background-size : cover;
       }
-
     </style>
 </head>
 <body>
 <div class="btn-group">
-    <button type="button" class="btn btn-primary" >로그인</button>
-    <button type="button" class="btn btn-primary">회원가입</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/account/loginForm';">로그인</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/account/register';">회원가입</button>
 </div>
 <div class="container-fluid p-5 bg-primary text-white text-center">
     <h1>HAPPY LIBRARY</h1>
     <p>WELCOME TO HAPPY LIBRARY!</p>
 </div>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">자료 검색</a>
+                    <a class="nav-link" th:href="@{/book/bookList}">자료 검색</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 서재</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">내 정보</a>
+                        <a class="dropdown-item" th:href="@{/account/myInfo}">내 정보</a>
                         <a class="dropdown-item" href="#">도서 대여 목록</a>
                         <a class="dropdown-item" href="#">나의 게시글</a>
                     </div>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
@@ -56,9 +51,10 @@
 <br>
 <div class="image1">
     <img src="https://user-images.githubusercontent.com/85466953/155053666-7b6000ec-69a3-4a33-8018-5d506c420a0c.jpg">
-
 </div>
+
 <!--위가 소현이가 작업한 것 아래는 확인용
+>>>>>>> master
 <div class="container">
     <div>
         <ul>
