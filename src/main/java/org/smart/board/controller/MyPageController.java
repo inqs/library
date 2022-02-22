@@ -10,6 +10,13 @@ public class MyPageController {
 
     @GetMapping("/myBoardList")
     public String myBoardList() {
-        return "myBoardList";
+
+        return "myPage/myBoardList";
+    }
+
+    @GetMapping("/myBookList")
+    public String myBookList() {
+
+        return "myPage/myBookList";
     }
 }
