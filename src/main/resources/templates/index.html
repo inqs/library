@@ -11,13 +11,40 @@
     div.btn-group{
          float: right;
     }
-    body {
-        height: 100vh;
-        background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1890&q=80');
-        background-repeat : no-repeat;
-        background-size : cover;
-      }
+     ul,li{list-style:none;}
+      .slide ul{height:100vh;}
+      .slide li{height:100vh; background-size : cover; overflow:hidden;}
+      .slide li:nth-child(1){background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80');}
+      .slide li:nth-child(2){background-image: url('https://images.unsplash.com/photo-1588580000645-4562a6d2c839?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');}
+      .slide li:nth-child(3){background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1890&q=80');}
+      .slide li:nth-child(4){background-image: url('https://images.unsplash.com/photo-1600431521340-491eca880813?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80');}
     </style>
+    <script>
+    const all = ele => document.querySelectorAll(ele)
+    const one = ele => document.querySelector(ele)
+    const slide = _ => {
+      const wrap = one('.slide')
+      const target = wrap.children[0]
+      const len = target.children.length
+      const liStyle = `
+        position:absolute;
+        left:0;right:0;top:0;bottom:0;transition:1s;opacity:0
+      `
+      target.style.cssText = `position:relative;`
+      Array.from(target.children)
+      .forEach(ele => ele.style.cssText = liStyle)
+      target.children[0].style.opacity = 1
+      let pos = 0
+      setInterval(_ => {
+        target.children[pos].style.opacity = 0
+        pos = (pos + 1) % len
+        target.children[pos].style.opacity = 1
+      }, 3000)
+    }
+    window.onload = function () {
+      slide()
+    }
+    </script>
 </head>
 <body>
 <div class="btn-group">
@@ -47,10 +74,13 @@
         </div>
     </div>
 </nav>
-<br>
-<br>
-<div class="image1">
-    <img src="https://user-images.githubusercontent.com/85466953/155053666-7b6000ec-69a3-4a33-8018-5d506c420a0c.jpg">
+<div class="slide">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </div>
 
 <!--위가 소현이가 작업한 것 아래는 확인용
