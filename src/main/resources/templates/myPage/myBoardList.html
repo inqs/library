@@ -74,45 +74,7 @@
   </table>
   <br>
   <br>
-  <!-- Pagination -->
-  <!--    <p th:text="${navi}"></p>-->
-  <nav>
-    <p>
-      <!-- 이전 그룹 -->
-      <span th:if="${navi.startPageGroup} <= 1"> &laquo;</span>
-      <span th:unless="${navi.startPageGroup} <= 1">
-                <a href="#" th:href="@{/board/boardList(currentPage=${navi.currentPage-1})}">&laquo;</a>
-            </span>
 
-      <!-- 이전 페이지 -->
-      <span th:if="${navi.currentPage} <= 1">&lt;</span>
-
-      <span th:unless="${navi.currentPage} <= 1">
-                <a href="#" th:href="@{/board/boardList(currentPage=${navi.currentPage-1})}">&lt;</a>
-            </span>
-
-      <!-- 반복 -->
-      <!-- <p th:text="${navi.startPageGroup}"></p> -->
-      <span th:each="currentPage, status : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-                <span style="color:red; font-weight:bold;" th:if="${currentPage} == ${navi.currentPage}" th:text="${currentPage}"></span>
-                <span th:unless="${currentPage} == ${navi.currentPage}">
-                    <a th:href="@{/board/boardList(currentPage=${currentPage}, searchItem=${searchItem}, searchWord=${searchWord})}" th:text="${currentPage}">1</a>
-                </span>
-            </span>
-
-      <!-- 다음 페이지 요청 -->
-      <span th:if="${navi.currentPage} >= ${navi.totalPageCount}">&gt;</span>
-      <span th:unless="${navi.currentPage} >= ${navi.totalPageCount}">
-                <a href="#" th:href="@{/board/boardList(currentPage=${navi.currentPage+1})}">&gt;</a>
-            </span>
-
-      <!-- 다음 그룹 요청 -->
-      <span th:if="${navi.startPageGroup} <= ${navi.totalPageCount}">&raquo;</span>
-      <span th:unless="${navi.startPageGroup} <= ${navi.totalPageCount}">
-                <a href="#" th:href="@{/board/boardList(currentPage=${navi.currentGroup*navi.currentPage + navi.pagePerGroup + 1})}">&raquo;</a>
-            </span>
-    </p>
-  </nav>
 </div>
 </body>
 </html>
