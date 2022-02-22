@@ -36,6 +36,19 @@ public class BookController {
         System.out.println(bookList.get(0).getReturnbook());
 
         return "book/bookList";
+
+    }
+
+    @GetMapping("/bookDetail")
+    public String bookDetail() {
+
+        return "book/bookDetail";
+    }
+
+    @GetMapping("/bookSearch")
+    public String bookSearch() {
+
+        return "book/bookSearch";
     }
 
 }
