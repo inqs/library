@@ -32,41 +32,32 @@ public class BookController {
         System.out.println("=================" + bookList);
 
 
-        System.out.println(bookList.get(0).getReturnbook());
+        for(int i = 0; i< bookList.size(); i++) {
+            if(bookList.get(i).getStock()>0) {
+                bookList.get(i).setReturnbook(1);
+            }
+        }
 
         return "book/bookList";
 
     }
 
-//    @GetMapping("/bookDetail")
-//    public String bookDetail() {
-//
-//        return "book/bookDetail";
-//    }
-
-    /**
-     * 글 자세히 보기 화면 요청
-     * @param bookseq
-     * @param model
-     * @return
-     */
     @GetMapping("/bookDetail")
-    public String bookDetail(Long bookseq, Model model) {
-        // 1) DB에서 boardseq에 해당하는 하나의 글을 질의해옴
-        // 1-1) 조회수 증가해야함
+    public String bookDetail(Long bookseq, Model model){
+
         Book book  = bookService.findOne(bookseq);
 
         // 2) Model에 저장
         model.addAttribute("book", book);
 
-        // 3) view로 forward
+        System.out.println("findone으로 하나 찾아온거 : ==================" +book);
+
+        if(book.getStock() >0){
+            book.setReturnbook(1);
+        }
+
         return "book/bookDetail";
-    }
 
-    @GetMapping("/bookSearch")
-    public String bookSearch() {
-
-        return "book/bookSearch";
     }
 
 }
