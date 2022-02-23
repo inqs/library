@@ -5,9 +5,9 @@
 <mapper namespace="org.smart.board.dao.BookDao">
     <select id="findAll" resultType="Book" parameterType="map">
         SELECT b.bookseq as bookseq, b.isbn as isbn, b.booktitle as booktitle,
-        b.writer as writer, b.publisher as publisher, b.descrip as descrip,
-        b.stock as stock, b.bookphoto as bookphoto,
-        r.rvseq as rvseq, r.usrid as usrid, r.returnbook as returnbook
+                b.writer as writer, b.publisher as publisher, b.descrip as descrip,
+                b.stock as stock, b.bookphoto as bookphoto,
+                r.rvseq as rvseq, r.usrid as usrid, r.returnbook as returnbook
         FROM book b, reservation r
 
         <choose>
@@ -15,12 +15,19 @@
                 WHERE booktitle like '%' || #{search_text} || '%'
                 or writer like '%' || #{search_text} || '%'
                 or publisher like '%' || #{search_text} || '%'
+                or descrip like '%' || #{search_text} || '%'
             </when>
             <otherwise>
                 WHERE ${searchField} like '%' || #{search_text} || '%'
             </otherwise>
-
         </choose>
-        AND b.isbn = r.isbn
+    </select>
+    <select id="findOne" resultType="Book" parameterType="Long">
+        SELECT b.bookseq as bookseq, b.isbn as isbn, b.booktitle as booktitle,
+                b.writer as writer, b.publisher as publisher, b.descrip as descrip,
+                b.stock as stock, b.bookphoto as bookphoto,
+                r.rvseq as rvseq, r.usrid as usrid, r.returnbook as returnbook
+        FROM book b, reservation r
+        WHERE b.bookseq = #{bookseq}
     </select>
 </mapper>
